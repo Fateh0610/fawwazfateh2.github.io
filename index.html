@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="logo perpustakaan.jpg" alt="Logo Perpustakaan" class="logo">
+        <nav>
+            <ul id="nav-links">
+                <li><a href="index.html">|  Beranda  |</a></li>
+                <li><a href="transaksi.html">|  Transaksi  |</a></li>
+                <li><a href="profil.html">|  Profil  |</a></li>
+                <li><a href="login.html">|  Login  |</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>Selamat Datang di Perpustakaan Online</h1>
+        <p>Perpustakaan Online adalah aplikasi untuk mengelola perpustakaan dengan mudah, mulai dari pendaftaran anggota, transaksi peminjaman, hingga manajemen buku.</p>
+        <p>Silakan pilih menu di atas untuk mulai menggunakan aplikasi ini.</p>
+        
+        <h2>Daftar Buku</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Judul Buku</th>
+                    <th>Pengarang</th>
+                    <th>Tahun Terbit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <img src="html css logo.jpg" alt="Belajar HTML & CSS" width="50">
+                        <br>Belajar HTML & CSS
+                    </td>
+                    <td>John Doe</td>
+                    <td>2020</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <img src="javascript logo.jpg" alt="Pemrograman JavaScript" width="50">
+                        <br>Pemrograman JavaScript
+                    </td>
+                    <td>Jane Smith</td>
+                    <td>2021</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <img src="basis data logo.jpg" alt="Pengantar Database" width="50">
+                        <br>Pengantar Database
+                    </td>
+                    <td>Michael Johnson</td>
+                    <td>2019</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>
+                        <img src="pengantar Teknonogi logo.jpg" alt="Pengantar Teknologi informasi" width="50">
+                        <br>pengantar teknologi informasi
+                    </td>
+                    <td>Ahmad Pratama</td>
+                    <td>2025</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <main>
+        <h2>Langkah-langkah Menggunakan Aplikasi</h2>
+        <div class="steps">
+            <div class="step">
+                <h3>1. Login</h3>
+                <p>Setelah mendaftar, masuk ke aplikasi dengan mengklik menu <a href="login.html">Login</a>. Masukkan username dan password yang telah didaftarkan.</p>
+            </div>
+            <div class="step">
+                <h3>2. Kelola Buku</h3>
+                <p>Telusuri daftar buku yang tersedia di perpustakaan pada menu <a href="index.html#daftar-buku">Daftar Buku</a>. Pilih buku yang ingin Anda pinjam.</p>
+            </div>
+            <div class="step">
+                <h3>3. Lakukan Transaksi</h3>
+                <p>Klik menu <a href="transaksi.html">Transaksi</a> untuk meminjam atau mengembalikan buku. Isi formulir transaksi dengan benar dan klik tombol "Simpan".</p>
+            </div>
+            <div class="step">
+                <h3>4. Periksa Profil</h3>
+                <p>Anda dapat melihat informasi akun Anda, seperti nama dan histori peminjaman, di menu <a href="profil.html">Profil</a>.</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>© 2025 Perpustakaan Online. All rights reserved.</p>
+    </footer>
+</body>
+<script>
+    // Select the hamburger menu and nav
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const nav = document.querySelector('header nav');
+
+    // Toggle the menu when the hamburger icon is clicked
+    hamburgerMenu.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+</script>
+
+</html>

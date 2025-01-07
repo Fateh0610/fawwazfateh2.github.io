@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Perpustakaan Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #4ad16c);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .profile-container {
+            background: #ffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1000px;
+            height: 90%;
+            padding: 30px;
+            text-align: center;
+            overflow-y: auto;
+            animation: slideIn 0.8s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid purple;
+            object-fit: cover;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profile-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .profile-container h2 {
+            font-size: 26px;
+            color: purple;
+            margin-bottom: 10px;
+        }
+
+        .profile-container p {
+            font-size: 18px;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .profile-container button {
+            background: purple;
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        .profile-container button:hover {
+            background: #1e88e5;
+            transform: scale(1.05);
+        }
+
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .modal h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: purple;
+        }
+
+        .modal input, .modal button {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin: 10px;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .modal input:focus {
+            border-color: green;
+            box-shadow: 0 0 6px rgba(66, 165, 245, 0.5);
+        }
+
+        .modal .btn-save {
+            background: gray;
+            color: white;
+            border: none;
+        }
+
+        .modal .btn-save:hover {
+            background: green;
+        }
+
+        .modal .btn-cancel {
+            background: gray;
+            color: white;
+            border: none;
+        }
+
+        .modal .btn-cancel:hover {
+            background: red;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <img src="profil foto.jpg" alt="Foto Profil" id="profileImage">
+        <h2 id="profileName">Fawwazfateh(FWZ)</h2>
+        <p id="profileEmail">fawwazfateh05@gmail.com</p>
+        <p id="profileBio">089522106479</p>
+        <p id="profileDescription">Aplikasi Perpustakaan Online adalah solusi inovatif yang dirancang untuk mempermudah pengelolaan perpustakaan modern. Dengan fitur-fitur canggih seperti manajemen buku, pendaftaran anggota, transaksi peminjaman, pencarian buku, serta laporan statistik, aplikasi ini memberikan efisiensi dan transparansi dalam operasional perpustakaan.
+
+            Selain itu, antarmuka yang ramah pengguna dan desain responsif memungkinkan aplikasi ini digunakan dengan nyaman di berbagai perangkat. Dukungan teknologi terkini memastikan data perpustakaan dikelola secara aman dan terstruktur.
+            
+            Ke depan, aplikasi ini memiliki potensi pengembangan yang besar, seperti integrasi barcode, fitur e-book, dan notifikasi otomatis. Dengan kemampuannya meningkatkan aksesibilitas dan layanan perpustakaan, Perpustakaan Online menjadi langkah strategis dalam transformasi digital institusi perpustakaan.
+            
+            Jika Anda mencari solusi untuk modernisasi perpustakaan, aplikasi ini adalah pilihan yang tepat untuk meningkatkan efisiensi, layanan, dan kepuasan pengguna.</p>
+        <button onclick="openModal()">Edit Profil</button>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeModal()"></div>
+    <div class="modal" id="modal">
+        <h3>Edit Profil</h3>
+        <input type="text" id="inputName" placeholder="Nama Baru">
+        <input type="email" id="inputEmail" placeholder="Email Baru">
+        <input type="text" id="inputBio" placeholder="Bio Baru">
+        <input type="text" id="inputDescription" placeholder="Deskripsi Baru">
+        <input type="file" id="inputImage" accept="image/*" onchange="previewImage(event)">
+        <div style="display: flex; justify-content: space-between; gap: 10px;">
+            <button class="btn-save" onclick="saveProfile()">Simpan</button>
+            <button class="btn-cancel" onclick="closeModal()">Batal</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                document.getElementById('profileImage').src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function saveProfile() {
+            const name = document.getElementById('inputName').value.trim();
+            const email = document.getElementById('inputEmail').value.trim();
+            const bio = document.getElementById('inputBio').value.trim();
+            const description = document.getElementById('inputDescription').value.trim();
+
+            if (name) document.getElementById('profileName').textContent = name;
+            if (email) document.getElementById('profileEmail').textContent = email;
+            if (bio) document.getElementById('profileBio').textContent = bio;
+            if (description) document.getElementById('profileDescription').textContent = description;
+
+            closeModal();
+        }
+    </script>
+</body>
+</html>

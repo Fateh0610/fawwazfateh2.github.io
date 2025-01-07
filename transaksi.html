@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi Perpustakaan</title>
+    <style>
+      * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap; /* Membuat elemen bisa wrap pada perangkat kecil */
+}
+
+.form-section {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 280px; /* Agar elemen tidak terlalu kecil di layar sempit */
+}
+
+.form-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: gray;
+}
+
+.form-section label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.form-section input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.form-section input[type="submit"] {
+    background-color: gray;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.form-section input[type="submit"]:hover {
+    background-color: green;
+}
+
+.transaction-table {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.transaction-table th,
+.transaction-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.transaction-table th {
+    background-color: gray;
+    color: white;
+}
+
+.error-msg {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Pada layar dengan lebar kurang dari 768px (Tablet/Handphone) */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .form-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-section {
+        min-width: 100%;
+    }
+
+    .transaction-table th,
+    .transaction-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .transaction-table {
+        margin-top: 20px;
+    }
+}
+
+/* Pada layar dengan lebar kurang dari 480px (Mobile) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    .form-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-section {
+        min-width: 100%;
+        padding: 15px;
+    }
+
+    .form-section input {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .transaction-table {
+        font-size: 12px;
+    }
+
+    .transaction-table th,
+    .transaction-table td {
+        padding: 8px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Transaksi Peminjaman dan Pengembalian Buku</h1>
+    
+    <div class="form-container">
+        <!-- Form Peminjaman Buku -->
+        <div class="form-section">
+            <h2>Peminjaman Buku</h2>
+            <form id="pinjamForm">
+                <label for="nama_peminjam">Nama Pemegang</label>
+                <input type="text" id="nama_peminjam" name="nama_peminjam" placeholder="Masukkan nama Anda" required>
+
+                <label for="judul_buku">Judul Buku</label>
+                <input type="text" id="judul_buku" name="judul_buku" placeholder="Masukkan judul buku" required>
+
+                <label for="tanggal_pinjam">Tanggal Pinjam</label>
+                <input type="date" id="tanggal_pinjam" name="tanggal_pinjam" required>
+
+                <label for="tanggal_kembali">Tanggal Kembali</label>
+                <input type="date" id="tanggal_kembali" name="tanggal_kembali" required>
+
+                <input type="submit" value="Pinjam Buku">
+            </form>
+        </div>
+
+        <!-- Form Pengembalian Buku -->
+        <div class="form-section">
+            <h2>Pengembalian Buku</h2>
+            <form id="kembaliForm">
+                <label for="nama_pengembali">Nama Pemegang</label>
+                <input type="text" id="nama_pengembali" name="nama_pengembali" placeholder="Masukkan nama Anda" required>
+
+                <label for="judul_buku_kembali">Judul Buku</label>
+                <input type="text" id="judul_buku_kembali" name="judul_buku_kembali" placeholder="Masukkan judul buku" required>
+
+                <label for="tanggal_pengembalian">Tanggal Pengembalian</label>
+                <input type="date" id="tanggal_pengembalian" name="tanggal_pengembalian" required>
+
+                <input type="submit" value="Kembalikan Buku">
+            </form>
+        </div>
+    </div>
+
+    <h2>Data Transaksi</h2>
+    <table class="transaction-table" id="transactionTable">
+        <thead>
+            <tr>
+                <th>Nama Pemegang</th>
+                <th>Judul Buku</th>
+                <th>Tanggal Transaksi</th>
+                <th>Jenis Transaksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data transaksi akan tampil di sini -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Fungsi untuk menyimpan transaksi di localStorage
+    function saveTransaction(data) {
+        let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+        transactions.push(data);
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+    }
+
+    // Fungsi untuk menampilkan transaksi di tabel
+    function displayTransactions() {
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+        const tableBody = document.querySelector("#transactionTable tbody");
+        tableBody.innerHTML = ''; // Clear existing data
+
+        transactions.forEach(transaction => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${transaction.nama}</td>
+                <td>${transaction.judul}</td>
+                <td>${transaction.tanggal}</td>
+                <td>${transaction.jenis}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Fungsi untuk memvalidasi form
+    function validateForm(form) {
+        let isValid = true;
+        const inputs = form.querySelectorAll("input[required]");
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+                // Menambahkan pesan kesalahan
+                const errorMsg = document.createElement('div');
+                errorMsg.classList.add('error-msg');
+                errorMsg.textContent = `${input.previousElementSibling.textContent} wajib diisi.`;
+                if (!input.nextElementSibling || !input.nextElementSibling.classList.contains('error-msg')) {
+                    input.insertAdjacentElement('afterend', errorMsg);
+                }
+            } else {
+                // Hapus pesan kesalahan jika input sudah terisi
+                if (input.nextElementSibling && input.nextElementSibling.classList.contains('error-msg')) {
+                    input.nextElementSibling.remove();
+                }
+            }
+        });
+        return isValid;
+    }
+
+    // Event listener untuk form peminjaman
+    document.getElementById("pinjamForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Validasi input
+        if (!validateForm(this)) {
+            return;
+        }
+
+        const namaPeminjam = document.getElementById("nama_peminjam").value;
+        const judulBuku = document.getElementById("judul_buku").value;
+        const tanggalPinjam = document.getElementById("tanggal_pinjam").value;
+        const tanggalKembali = document.getElementById("tanggal_kembali").value;
+
+        const transaction = {
+            nama: namaPeminjam,
+            judul: judulBuku,
+            tanggal: `${tanggalPinjam} - ${tanggalKembali}`,
+            jenis: "Peminjaman"
+        };
+
+        saveTransaction(transaction);
+        displayTransactions();
+
+        // Reset form
+        document.getElementById("pinjamForm").reset();
+    });
+
+    // Event listener untuk form pengembalian
+    document.getElementById("kembaliForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Validasi input
+        if (!validateForm(this)) {
+            return;
+        }
+
+        const namaPengembali = document.getElementById("nama_pengembali").value;
+        const judulBukuKembali = document.getElementById("judul_buku_kembali").value;
+        const tanggalPengembalian = document.getElementById("tanggal_pengembalian").value;
+
+        const transaction = {
+            nama: namaPengembali,
+            judul: judulBukuKembali,
+            tanggal: tanggalPengembalian,
+            jenis: "Pengembalian"
+        };
+
+        saveTransaction(transaction);
+        displayTransactions();
+
+        // Reset form
+        document.getElementById("kembaliForm").reset();
+    });
+
+    // Tampilkan transaksi saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", displayTransactions);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login perpustakaan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: left;
+        }
+        h2 {
+            color: #ebff36;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .logo img {
+            max-width: 80px;
+            margin-right: 10px;
+            width: 108px;
+            height: 80px;
+            border-radius: 100px;
+           
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 93%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background: #63676b;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background: green;
+        }
+
+        .footer {
+            margin-top: 10px;
+            font-size: 0.8em;
+            text-align: center; 
+        }
+
+        .link {
+            margin-top: 10px;
+            text-align: center; 
+        }
+        .link a {
+            color: #ebebeb;
+            text-decoration: none;
+        }
+        .link a:hover {
+            text-decoration: underline;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container" style="background-color: gray">
+    <div class="logo">
+        <img src="logo perpustakaan.jpg" alt="YB LOGO">
+    </div>
+    <h2>Log-in</h2>
+    <form action="index.html" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Masuk">
+    </form>
+    <div class="link">
+        <a href="#" id="forgot-password-link">Lupa Password?</a> | 
+        <a href="#" id="register-link">Daftar</a>
+    </div>
+</div>
+
+<div id="forgot-password-modal" class="modal">
+    <div class="modal-content">
+        <h2>Lupa Password</h2>
+        <form id="reset-password-form" action="#">
+            <input type="email" name="email" placeholder="Email Anda" required>
+            <input type="submit" value="Reset Password">
+        </form>
+        <button onclick="closeModal('forgot-password-modal')">Tutup</button>
+    </div>
+</div>
+
+<div id="register-modal" class="modal">
+    <div class="modal-content">
+        <h2>Daftar</h2>
+        <form action="latihan 20.html" method="post">
+            <input type="text" name="new username" placeholder="Username" required>
+            <input type="email" name="new email" placeholder="Email" required>
+            <input type="password" name="new password" placeholder="Password" required>
+           <label>
+                <input type="checkbox" name="member" id="member"> Daftar Sebagai Member
+            </label><br><br>
+            <input type="submit" value="Daftar">
+        </form>
+        <button onclick="closeModal('register-modal')">Tutup</button>
+    </div>
+</div>
+
+<script>
+    // Function to show modals
+    function showModal(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+    }
+
+    // Function to close modals
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    // Event listeners untuk membuka modals
+    document.getElementById('forgot-password-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        showModal('forgot-password-modal');
+    });
+
+    document.getElementById('register-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        showModal('register-modal');
+    });
+
+    // Handle reset password -> open register modal
+    document.getElementById('reset-password-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        closeModal('forgot-password-modal'); // Close "Lupa Password" modal
+        showModal('register-modal'); // Open "Daftar" modal
+    });
+</script>
+</body>
+</html>
